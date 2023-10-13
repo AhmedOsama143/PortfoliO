@@ -28,11 +28,50 @@ if (mainBackground != null) {
 
 // Setting box toggle
 let settings = document.querySelector(".settings-box");
+let optionBox = document.querySelectorAll(".option-box");
+let optionBoxH4 = document.querySelectorAll(".option-box h4");
+let colorsListBox = document.querySelector(".colors-list");
+let randomBackgroundBox = document.querySelector(".random-background");
+let imagesBox = document.querySelector(".imgs-box");
+let bulletsOptionBox = document.querySelector(".bullets-option");
+let resetOptions = document.querySelector(".reset-options");
 let gearIcon = document.querySelector(".fa-gear");
 
 gearIcon.addEventListener("click", () => {
   settings.classList.toggle("open");
   gearIcon.classList.toggle("fa-spin");
+});
+
+function stopPropaganda(ele) {
+  ele.onclick = function (e) {
+    e.stopPropagation();
+  };
+}
+
+function stopPropaganda2(ele) {
+  ele.forEach((el) => {
+    el.onclick = function (e) {
+      e.stopPropagation();
+    };
+  });
+}
+
+stopPropaganda(colorsListBox);
+stopPropaganda(randomBackgroundBox);
+stopPropaganda(imagesBox);
+stopPropaganda(bulletsOptionBox);
+stopPropaganda(resetOptions);
+stopPropaganda(gearIcon);
+stopPropaganda2(optionBox);
+stopPropaganda2(optionBoxH4);
+
+document.addEventListener("click", (e) => {
+  if (e.target == settings) {
+    console.log("first");
+  } else {
+    settings.classList.remove("open");
+    gearIcon.classList.remove("fa-spin");
+  }
 });
 // Setting box toggle
 
@@ -251,22 +290,3 @@ up.onclick = function () {
     behavior: "smooth",
   });
 };
-// Timing;
-let countDowndate = new Date("Dec 31, 2023 23:59:59").getTime();
-let counter = setInterval(() => {
-  let dataNow = new Date().getTime();
-  let diffData = countDowndate - dataNow;
-  let days = Math.floor(diffData / (1000 * 60 * 60 * 24));
-  let hours = Math.floor((diffData % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  let minutes = Math.floor((diffData % (1000 * 60 * 60)) / (1000 * 60));
-  let seconds = Math.floor((diffData % (1000 * 60)) / 1000);
-  document.querySelector(".days").innerHTML = days < 10 ? `0${days}` : days;
-  document.querySelector(".hours").innerHTML = hours < 10 ? `0${hours}` : hours;
-  document.querySelector(".minutes").innerHTML =
-    minutes < 10 ? `0${minutes}` : minutes;
-  document.querySelector(".seconds").innerHTML =
-    seconds < 10 ? `0${seconds}` : seconds;
-  if (diffData < 0) {
-    clearInterval(counter);
-  }
-}, 1000);
