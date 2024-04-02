@@ -224,8 +224,9 @@ a {
 	min-height: 100vh;
 	background-image: url("../images/img3.jpg");
 	background-size: cover;
-	position: relative;
+	background-position: center; /* Center the background image */
 }
+
 .landing-page .overlay {
 	position: absolute;
 	width: 100%;
@@ -416,6 +417,7 @@ a {
 	margin-top: 10px;
 	background-color: var(--main-color);
 	box-shadow: 3px 1px 3px var(--main-color);
+	transition: 0.3s;
 }
 .about-me .contacts {
 	display: flex;
@@ -454,7 +456,7 @@ a {
 }
 .about-me .download-cv:hover,
 .about-me .contacts {
-	box-shadow: 3px 1px 5px var(--main-color);
+	box-shadow: 3px 4px 5px var(--main-color);
 }
 .about-me .download-cv:hover .download-cv i {
 	transform: rotate(360deg);
@@ -597,6 +599,7 @@ a {
 	cursor: pointer;
 	box-shadow: 0 0 0 1px var(--main-color);
 	transition: var(--main-transition);
+	border-radius: 5px;
 }
 .gallary .images-box .my-img:hover {
 	filter: grayscale(0.7);
@@ -1104,4 +1107,9 @@ a {
 	to {
 		transform: rotate(360deg);
 	}
+}
+
+/* Last Updates 4/2/2024 */
+.circle-img {
+	border-radius: 50%;
 }
