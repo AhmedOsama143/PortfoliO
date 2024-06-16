@@ -290,3 +290,5 @@ up.onclick = function () {
 		behavior: "smooth",
 	});
 };
+
+// Certificates

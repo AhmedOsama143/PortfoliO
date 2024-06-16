@@ -332,7 +332,6 @@ document.addEventListener("DOMContentLoaded", () => {
 			setTextColor(".testimonials .ts-content .ts-box .person-info h4", "#fff");
 		} else {
 			modeImg.src = "images/sun2.png";
-			console.log(modeImg);
 
 			document.querySelector(".timeline").style.backgroundColor = "#fff";
 			document.querySelector(".skills").style.backgroundColor = "#fff";
@@ -492,3 +491,41 @@ document.addEventListener("DOMContentLoaded", function () {
 // 			});
 // 	}
 // });
+
+// Certificates
+
+const images = document.querySelectorAll(".cirtificates-box img");
+console.log(images);
+images.forEach((image) => {
+	image.addEventListener("click", function () {
+		console.log(image);
+	});
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+	const images = document.querySelectorAll(".certificates-box img");
+	const popup = document.getElementById("popup");
+	const popupImg = document.getElementById("popup-img");
+	const popupHeading = document.getElementById("popup-heading");
+	const popupClose = document.getElementById("popup-close");
+
+	images.forEach((image) => {
+		console.log("first");
+		image.addEventListener("click", function () {
+			popupImg.src = image.src;
+			popupHeading.textContent = image.alt;
+			popup.style.display = "flex";
+		});
+	});
+
+	popupClose.addEventListener("click", function () {
+		popup.style.display = "none";
+	});
+
+	// Optional: Close the popup when clicking outside the popup content
+	window.addEventListener("click", function (event) {
+		if (event.target == popup) {
+			popup.style.display = "none";
+		}
+	});
+});
