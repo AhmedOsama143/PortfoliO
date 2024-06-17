@@ -67,7 +67,7 @@ stopPropaganda2(optionBoxH4);
 
 document.addEventListener("click", (e) => {
 	if (e.target == settings) {
-		console.log("first");
+		return true;
 	} else {
 		settings.classList.remove("open");
 		gearIcon.classList.remove("fa-spin");
@@ -314,6 +314,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			modeImg.src = "images/moon1.png";
 			document.querySelector(".timeline").style.backgroundColor = "#000";
 			document.querySelector(".skills").style.backgroundColor = "#000";
+
 			setBackgroundColor("#000");
 			setBackgroundDarkMode(document.querySelectorAll(".settings-box"), "#000"); // 1
 			setBackgroundDarkMode(
@@ -332,7 +333,6 @@ document.addEventListener("DOMContentLoaded", () => {
 			setTextColor(".testimonials .ts-content .ts-box .person-info h4", "#fff");
 		} else {
 			modeImg.src = "images/sun2.png";
-
 			document.querySelector(".timeline").style.backgroundColor = "#fff";
 			document.querySelector(".skills").style.backgroundColor = "#fff";
 			setBackgroundColor("#fff");
@@ -432,75 +432,9 @@ document.addEventListener("DOMContentLoaded", function () {
 	typeWriterEffect();
 });
 
-// // Validate Form
-// document.addEventListener("DOMContentLoaded", function () {
-// 	var contactForm = document.getElementById("contactForm");
-
-// 	contactForm.addEventListener("submit", function (event) {
-// 		event.preventDefault(); // Prevent the default form submission
-
-// 		// Validate form fields (add your validation logic here)
-// 		var isValid = validateForm();
-
-// 		if (isValid) {
-// 			// If the form is valid, submit the data asynchronously
-// 			submitForm();
-// 		}
-// 	});
-
-// 	function validateForm() {
-// 		let username = document.forms["contactForm"]["username"].value;
-// 		let phone = document.forms["contactForm"]["phone"].value;
-// 		let email = document.forms["contactForm"]["email"].value;
-// 		let subject = document.forms["contactForm"]["subject"].value;
-// 		let message = document.forms["contactForm"]["message"].value;
-
-// 		if (
-// 			username === "" ||
-// 			phone === "" ||
-// 			email === "" ||
-// 			subject === "" ||
-// 			message === ""
-// 		) {
-// 			alert("Please fill in all required fields");
-// 			return false;
-// 		}
-
-// 		return true;
-// 	}
-
-// 	function submitForm() {
-// 		var formData = new FormData(contactForm);
-
-// 		fetch("contact.php", {
-// 			method: "POST",
-// 			body: formData,
-// 		})
-// 			.then(function (response) {
-// 				if (!response.ok) {
-// 					throw new Error("Network response was not ok");
-// 				}
-// 				return response.text();
-// 			})
-// 			.then(function (data) {
-// 				console.log("Form submitted successfully");
-// 				console.log(data);
-// 			})
-// 			.catch(function (error) {
-// 				console.error("There was a problem with the fetch operation:", error);
-// 			});
-// 	}
-// });
-
 // Certificates
 
 const images = document.querySelectorAll(".cirtificates-box img");
-console.log(images);
-images.forEach((image) => {
-	image.addEventListener("click", function () {
-		console.log(image);
-	});
-});
 
 document.addEventListener("DOMContentLoaded", function () {
 	const images = document.querySelectorAll(".certificates-box img");
@@ -510,7 +444,6 @@ document.addEventListener("DOMContentLoaded", function () {
 	const popupClose = document.getElementById("popup-close");
 
 	images.forEach((image) => {
-		console.log("first");
 		image.addEventListener("click", function () {
 			popupImg.src = image.src;
 			popupHeading.textContent = image.alt;
@@ -527,5 +460,57 @@ document.addEventListener("DOMContentLoaded", function () {
 		if (event.target == popup) {
 			popup.style.display = "none";
 		}
+	});
+});
+
+// Toggle menu
+let showMenu = false;
+
+document.addEventListener("DOMContentLoaded", function () {
+	const toggleButton = document.getElementById("toggle-button");
+	const toggleButtonSpans = document.querySelectorAll(".toggle-button span");
+	const toggleON = document.getElementById("toggle-on");
+	const mainMenu = document.querySelector(".links");
+	const menuLinks = mainMenu.querySelectorAll("a"); // Assuming links inside mainMenu are anchor tags
+
+	function showMenuHandler() {
+		toggleButton.classList.add("on");
+		mainMenu.style.display = "flex";
+		toggleButtonSpans.forEach((span) => (span.style.display = "none"));
+		toggleON.style.display = "block";
+		showMenu = true;
+	}
+
+	function hideMenuHandler() {
+		toggleON.style.display = "none";
+		mainMenu.style.display = "none";
+		toggleButtonSpans.forEach((span) => (span.style.display = "block"));
+		toggleButton.classList.remove("on");
+		showMenu = false;
+	}
+
+	toggleButton.addEventListener("click", (event) => {
+		event.stopPropagation();
+		if (!showMenu) {
+			showMenuHandler();
+		} else {
+			hideMenuHandler();
+		}
+	});
+
+	document.addEventListener("click", (event) => {
+		if (
+			showMenu &&
+			!toggleButton.contains(event.target) &&
+			!mainMenu.contains(event.target)
+		) {
+			hideMenuHandler();
+		}
+	});
+
+	menuLinks.forEach((link) => {
+		link.addEventListener("click", () => {
+			hideMenuHandler();
+		});
 	});
 });

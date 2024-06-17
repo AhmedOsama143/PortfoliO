@@ -172,7 +172,7 @@ a {
 	top: 50%;
 	transform: translateY(-50%);
 	width: 40px;
-	z-index: 23;
+	z-index: 2;
 }
 .nav-bullets .bullet {
 	width: 20px;
@@ -295,15 +295,46 @@ a {
 	display: block;
 }
 
+@media (max-width: 480px) {
+	.header .links {
+		display: none;
+		flex-direction: column;
+		background-color: #666;
+		position: absolute;
+		right: 0;
+		top: 0;
+		padding: 15px;
+		padding-top: 20px;
+		width: 100%;
+		height: calc(100vh - 82px);
+		z-index: 55555;
+		margin-top: 80px;
+		text-align: left;
+		gap: 30px;
+		border-left: 1px solid #eee;
+		border-top: 1px solid #eee;
+		box-shadow: 2px 5px 10px;
+		border-top-left-radius: 15px;
+		border-bottom-left-radius: 15px;
+		transition: 0.5s all ease-in-out;
+	}
+}
 .introduction-text {
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	z-index: 2;
+	z-index: 1;
 	color: #fff;
 	text-align: center;
+	padding-right: 15px;
+	background: rgba(255, 255, 255, 0.1);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	padding: 20px 5px;
+	border-radius: 15px;
 }
+
 .introduction-text h1 {
 	font-size: 38px;
 	margin: 0 0 12px;
@@ -345,6 +376,46 @@ a {
 	width: 28px;
 	height: 28px;
 }
+
+.toggle-button {
+	background-color: var(--main-color);
+	color: white;
+	border: none;
+	padding: 10px;
+	font-size: 24px;
+	cursor: pointer;
+	border-radius: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	gap: 3px;
+	position: absolute;
+	right: 12px;
+	z-index: 999999;
+	top: 24px;
+	width: 40px;
+	height: 32px;
+	max-width: 40px;
+	max-height: 32px;
+}
+.toggle-button span {
+	width: 20px;
+	height: 2px;
+	background-color: #fff;
+}
+
+.toggle-on {
+	display: none;
+}
+.toggle-button.on {
+	background-color: red;
+}
+@media (min-width: 480px) {
+	.toggle-button {
+		display: none;
+	}
+}
 @media (max-width: 767px) {
 	.header {
 		text-align: center;
@@ -354,13 +425,18 @@ a {
 		width: auto;
 	}
 	.introduction-text {
-		width: 90%;
+		width: 82%;
 	}
 	.introduction-text h1 {
 		font-size: 26px;
 	}
 	.introduction-text p {
 		width: 95%;
+	}
+}
+@media (max-width: 480px) {
+	.introduction-text {
+		padding-right: 15px;
 	}
 }
 /* Strat landing-page */
@@ -1142,7 +1218,7 @@ a {
 .popup {
 	display: none;
 	position: fixed;
-	z-index: 1;
+	z-index: 25;
 	left: 0;
 	top: 0;
 	width: 100%;
@@ -1190,5 +1266,3 @@ a {
 	height: auto;
 	margin-top: 20px;
 }
-
-/* Slider */
