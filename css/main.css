@@ -246,7 +246,7 @@ a {
 }
 .header .logo {
   font-size: 25px;
-  width: 350px;
+  width: 320px;
   padding: 15px;
   font-weight: bold;
   color: var(--main-color);
@@ -299,14 +299,14 @@ a {
   .header .links {
     display: none;
     flex-direction: column;
-    background-color: #666;
+    background-color: #83adfc;
     position: absolute;
     right: 0;
     top: 0;
     padding: 15px;
     padding-top: 20px;
     width: 100%;
-    height: calc(100vh - 82px);
+    height: calc(50vh - 82px);
     z-index: 55555;
     margin-top: 80px;
     text-align: left;
@@ -1203,7 +1203,7 @@ a {
   justify-content: space-between;
   align-items: center;
   gap: 10px;
-  flex-direction: row;
+  flex-wrap: wrap;
   margin-bottom: 20px;
 }
 .certificates .certificates-box img {
